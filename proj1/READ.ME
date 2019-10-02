@@ -9,4 +9,46 @@ This is EECS731 Data Science project from Ben Liu.
 | |-2016.csv
 | |-suicide.csv
 
-(2) Data 
+(2) Data explanation
+suicide.csv is the data set of suicide rate all over the world from 1985 to 2016.
+2015.csv is the data set of the happiness score all over the world in 2015, and 2016.csv is the alternative for year of 2016.
+
+(3) What I am going to do with the data
+I am interested in learning the correlation between suicide rate and happiness scores, nationally. 
+To begin with, I am focusing on the "average" possibility: I know that happiness score describes a country instead of a person whereas the person is the key fact here. However by averaging on all population in one country, we might end up finding something interesting.
+
+(4) Data clean/sanity check
+Since the data set is maintained by Kaggle, it doesn't need much cleaning, but I did sanity check to make sure:
+  a) I have data of suicide rate and happiness score for some countries.
+  b) The content of sex is 'male' and 'female'.
+  c) No missing data in the data set.
+
+(5) Visualization
+First I visualize the average suicide rate from 1985 to 2016, to see if there is some existing patterns, and it seems that the suicide rate doesn't change much.
+Then I visualize the average suicide rate from 1985 to 2016 but distinguish male data and female data, the results is very interesting for:
+  a) male suicide rate is way higher than female suicide rate.
+  b) male suicide rate varies accross time.
+  c) female suicide rate is constant and low, compared to male.
+
+(6) Data set combination
+What I am interested in is the effect of happiness score on suicide rate. 
+My hypothesis is: the happies the country is, the lower its suicide rate should be. 
+So I 
+  a) select data subset from the original suicide data set by focusing on one year, 
+  b) group the suicide rates of the same country by taking the mean,
+  c) merge data set by attaching the happines score to corresponding country,
+  d) scatter plot the result.
+ 
+If my hypothesis is correct, the scatter should somehow regression to some curve that shows the suicide rate goes up when happiness score goes down. 
+Unfortunately, the actual scatter doesn't seem to have this pattern or, if not any pattern. This is consistent to the statement before, since suicide is related to only one person where as happiness score describe a country, and even if the country on verage is very happy, some individuals might still commit to suicide.
+Then I repeat the some work, for male and for female sperately, to see if the per gender patter that appears accross 30 years holds the same. And I find:
+  a) In general female has lower suicide rate compared to male.
+  b) The suicide rate for female stays in a relatively narrow band whereas male has higher suicide rate and higher variance.
+  c) Higher happiness socre tends to prevent male from killing themselves, sort of.
+  d) It's dangerous to be male.
+  
+ The finding c) is a confined version of my hypothesis.
+ 
+ (7) Cross-validation
+ To validate my findings, I did (6) on data set 2016 again and the results support the same conclusion.
+ 
