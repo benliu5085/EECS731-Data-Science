@@ -1,1 +1,35 @@
+This is EECS731 Data Science project from Ben Liu.
 
+(1) Content
+
+|-READ.ME
+|-proj2.ipynb
+|-data
+| |-Shakespeare_data.csv
+
+(2) Data explanation and cleaning
+The Shakespeare_data.csv has 6 columns, I would only use column "Player" and "PlayerLine".
+Because the data size, I only focus on play "Hamlet", and I am going to discard the data points that has no "Player" associated with it.
+
+(3) data presentation
+As our goal is to classify the playerline to its player, I will use navie bag of words representation by building a map from words to integer.
+If a word in test set is not in training set, I would say the prediction of that word is "NC", standing for unknown.
+
+(4) models and result
+I apply Navie Bayes / decision tree and random forest to the data.
+For Navie Bayes, I first train one model to predict all 7 players in play "Hamlet", the result shows that the trained model is extremely in favor of player "HAMLET". 
+Further study shows that the reason for this is simply that player "HAMLET" has dominant number of lines, 8565 vs 3018, which is the second most number of lines of player "KING CLAUDIUS".
+So I downsample the training data to make sure each player has only 800 lines used for training.
+Then the model performs slightly better but not as good as I want.
+So I trained individual models for each player, and taking maximum voting strategy to predict the player, the result is bad too.
+The voting strategy doesn't really work because for most lines, the most significant prediction is "not this class", so I am not going to use this approach later. 
+For decision tree and random forest, since sklearn has already implemented the multi-classifier, the accuracy is 0.43645569720105176 for decision tree, and 0.4459689759523224 for random forest:.
+
+(5) analysis
+The result above is not great mainly because the size of training data is too small, So I continued to study single-class classifer for player "HAMLET".
+THe result is 
+navie bayes: 0.5104665010080174
+decision tree: 0.5126305864212002
+random forest: 0.5116213189137376
+
+So I might need to take a look at the way of data representation in the future.
